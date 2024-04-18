@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
-const { token, publishNewsCommand, newsChannelId } = require('./config.json'); // Ensure your config contains the bot token
+const { token, newsChannelId } = require('./secrets.json'); // Ensure your config contains the bot token
+const { publishNewsCommand } = require('./config.json'); // Ensure your config contains the bot token
 
 const client = new Client({
     intents: [
