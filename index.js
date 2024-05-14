@@ -66,6 +66,8 @@ client.on('interactionCreate', async interaction => {
     const targetChannel = await client.channels.fetch(newsChannelId);
     if (targetChannel && targetChannel.isTextBased()) {
         targetChannel.send(getMessage(parsed)).then( async (response) => {
+            await response.react('✅');
+            await response.react('🚫');
             sentMessage = await interaction.editReply({ content: `${sentMessage.content}\n Вашата новина е побликувана в канала за новини` });
 
             insert(parsed, response.id);
@@ -106,7 +108,8 @@ const getMessage = (parsed) => {
         `Заглавие: ${parsed.title}`,
         `Описание: ${parsed.description}`,
         `Link: ${parsed.link}`,
-        `Публикувана от: ${parsed.username} / ${parsed.globalName}`
+        `Публикувана от: ${parsed.username} / ${parsed.globalName}`,
+        `Моля гласувайте с '✅' или '🚫'дали новината да бъде обсъждана в подкаста на живо!`
     ];
 
     return arr.join("\n");
